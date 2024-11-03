@@ -2,12 +2,15 @@
 
 class Database
 {
-  public function getConnection()
-  {
-    try {
-      $pdo = new PDO("mysql:dbname=forum;host=127.0.0.1", "root", "@ROOT@ROOT4438");
-      return $pdo;
-    } catch (PDOException $err) {
+    protected function getConnection()
+    {
+        try {
+            $pdo = new PDO("mysql:host=localhost;dbname=mvc_structure", "root", "");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (PDOException $e) {
+            echo "Erro na conexão: " . $e->getMessage();
+            return null;
+        }
     }
-  }
 }
